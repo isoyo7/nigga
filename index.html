@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knightfall: The Witch’s Gambit</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at center, #2a003f 0%, #000000 100%);
+      color: #e0b3ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      font-family: 'Cormorant Garamond', serif;
+      position: relative;
+    }
+    h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #c77dff;
+      text-shadow: 0 0 10px #c77dff, 0 0 20px #aa00ff;
+      z-index: 2;
+    }
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      max-width: 550px;
+      color: #e9d0ff;
+      text-shadow: 0 0 5px #a366cc;
+      z-index: 2;
+    }
+    button {
+      background: none;
+      color: #ff8fff;
+      border: 2px solid #ff8fff;
+      font-size: 1.2rem;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ff8fff, 0 0 20px #ff66cc;
+      font-family: 'Cormorant Garamond', serif;
+      z-index: 2;
+    }
+    button:hover {
+      background-color: #ff8fff20;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff8fff, 0 0 30px #ff66cc;
+    }
+
+    .glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #aa00ff33 0%, transparent 70%);
+      filter: blur(100px);
+      animation: pulse 5s infinite alternate;
+      z-index: 1;
+    }
+    .glow.one {
+      top: 10%;
+      left: 10%;
+    }
+    .glow.two {
+      bottom: 10%;
+      right: 10%;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.3); opacity: 0.8; }
+    }
+
+    #snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 0 3px #1c0c4dcc);
+    }
+
+    /* Guide character styles */
+    #guide-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      max-width: 300px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #dda0dd;
+      z-index: 1000;
+    }
+
+    #guide-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #dda0dd;
+      object-fit: cover;
+    }
+
+    #guide-text {
+      background: rgba(50, 0, 50, 0.8);
+      padding: 15px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #dda0dd;
+      font-size: 14px;
+      line-height: 1.3;
+      position: relative;
+      max-width: 220px;
+    }
+
+    #guide-text::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-right: 15px solid rgba(50, 0, 50, 0.8);
+      border-bottom: 10px solid transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <h1>Knightfall: The Witch’s Gambit</h1>
+  <p>You wake up in a cursed realm. Save the princess. Kill the witch. Go home...  
+    But not everything is what it seems. In the end, the choice is yours — but so is the price.</p>
+  <button onclick="startGame()">Enter the Curse</button>
+
+  <canvas id="snow"></canvas>
+
+  <!-- Guide Character -->
+  <div id="guide-container">
+    <img src="guide1.png" alt="Guide" id="guide-img" />
+    <div id="guide-text">
+      <p>Welcome, brave knight! Ready to save the world? I'll be your guide through this journey</p>
+    </div>
+  </div>
+
+  <script>
+    function startGame() {
+      window.location.href = "game.html";
+    }
+
+    // Snow effect
+    const canvas = document.getElementById('snow');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let snowflakes = [];
+
+    function init() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      snowflakes = [];
+
+      for(let i = 0; i < 100; i++) {
+        snowflakes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 3 + 1,
+          speed: Math.random() * 1 + 0.5,
+          wind: Math.random() * 0.5 - 0.25
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(200, 180, 255, 0.8)';
+      ctx.shadowColor = '#b399ffcc';
+      ctx.shadowBlur = 8;
+
+      snowflakes.forEach(flake => {
+        ctx.beginPath();
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        flake.x += flake.wind;
+        flake.y += flake.speed;
+
+        if(flake.y > height) {
+          flake.y = -flake.radius;
+          flake.x = Math.random() * width;
+        }
+        if(flake.x > width) {
+          flake.x = 0;
+        }
+        if(flake.x < 0) {
+          flake.x = width;
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
+  </script>
+</body>
+</html>

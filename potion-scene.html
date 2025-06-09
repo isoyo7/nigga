@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Final Choice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background: radial-gradient(circle at center, #1b002e, #000);
+      color: #e0b3ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 3rem;
+      color: #ffccff;
+      text-shadow: 0 0 10px #ff66cc;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 20px 2rem;
+    }
+
+    .choices {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+  padding: 1rem 2.5rem;
+  border: 2px solid #ff9bff;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #2d003b, #420056);
+  color: #ffccff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  box-shadow: 0 0 15px #ff6ee0, 0 0 25px #aa00ff60;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 6px #ff99ff80;
+}
+
+button:hover {
+  background: #5e006e;
+  box-shadow: 0 0 20px #ff94f5, 0 0 40px #e600e6aa;
+  transform: scale(1.08);
+}
+
+
+    #guide-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    #guide-img {
+      width: 120px;
+    }
+
+    #guide-text {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 15px;
+      border-radius: 12px;
+      margin-right: 10px;
+      font-size: 1rem;
+      max-width: 200px;
+      box-shadow: 0 0 10px #9900cc;
+    }
+
+    #ending-message {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      color: #ffb3ff;
+      font-size: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99;
+      text-shadow: 0 0 10px #ff00ff;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Final Choice</h1>
+  <p>She offers you a way out by drinking the potion looks like she really wants to help you. One choice leads to freedom, the other to eternal illusion but you'll live happily with the witch. Choose wisely, knight.</p>
+
+  <div class="choices">
+    <button onclick="chooseReality()">Return to your world and tell the witch"No, I have a wife at home nigga"</button>
+    <button onclick="stayWithWitch()">Stay with the Witch</button>
+  </div>
+
+  <div id="ending-message"></div>
+
+  <div id="guide-container">
+    <div id="guide-text">You're really bad at choices, don't mess this up...</div>
+    <img src="guide6.png.png" alt="Guide" id="guide-img" />
+  </div>
+
+  <script>
+    function chooseReality() {
+      document.getElementById("ending-message").style.display = "flex";
+      document.getElementById("ending-message").innerHTML = `
+        <h2>You chose to wake up.</h2>
+        <p>The illusion fades, and you realize... she was always there. The witch and the guide was me . Happy Birthday,I love u <3 </p>
+      `;
+    }
+
+    function stayWithWitch() {
+      document.getElementById("ending-message").style.display = "flex";
+      document.getElementById("ending-message").innerHTML = `
+        <h2>The curse takes hold.</h2>
+        <p>You chose her, but she never chose you. Darkness swallows you again... doomed to repeat your fate.</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>

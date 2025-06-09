@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Witch Encounter</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #1a001f, #000000);
+      color: #f8d6ff;
+      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #e399ff;
+      text-shadow: 0 0 10px #9d4edd, 0 0 20px #7b2cbf;
+    }
+
+    p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      color: #ecd9ff;
+      text-shadow: 0 0 4px #8a00ff99;
+    }
+
+    .choices {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      background: none;
+      border: 2px solid #ff9fff;
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      color: #ff9fff;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #ff8fff, 0 0 20px #ff66cc;
+    }
+
+    button:hover {
+      background-color: #ff8fff20;
+      transform: scale(1.05);
+    }
+
+    /* Guide */
+    #guide-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      background: rgba(32, 0, 50, 0.8);
+      border: 1px solid #b48eff;
+      border-radius: 16px;
+      padding: 10px 15px;
+      box-shadow: 0 0 15px #b48eff88;
+      z-index: 3;
+    }
+
+    #guide-img {
+      width: 110px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    #guide-text {
+      background-color: rgba(55, 0, 80, 0.7);
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-size: 1rem;
+      color: #ffcfff;
+      max-width: 180px;
+      box-shadow: 0 0 10px #c77dff;
+    }
+
+    /* Death Screen */
+    .death-screen {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      color: #ff8fff;
+      font-size: 2rem;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99;
+      text-shadow: 0 0 10px #ff00ff;
+      font-family: 'Cinzel Decorative', cursive;
+    }
+
+    .death-screen button {
+      margin-top: 1rem;
+      font-size: 1rem;
+      border: 2px solid #ff8fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>The Witch Appears</h1>
+  <p>From the dense shadows, a tall figure cloaked in violet silk emerges.<br>
+    “Kneel before me, knight... and I might let you live.”</p>
+
+  <div class="choices">
+    <button onclick="kneelChoice()">Kneel</button>
+    <button onclick="refuseChoice()">Refuse</button>
+  </div>
+
+  <!-- Guide -->
+  <div id="guide-container">
+    <img src="guide3.png.png" alt="Guide" id="guide-img" />
+    <div id="guide-text">Don’t get her mad like you always do.</div>
+  </div>
+
+  <!-- Death Screen -->
+  <div class="death-screen" id="deathScreen">
+    <p>You dared defy her.</p>
+    <p>The shadows claim you.</p>
+    <button onclick="tryAgain()">Try Again</button>
+
+  </div>
+
+  <script>
+    function kneelChoice() {
+  alert("The witch smirks, pleased. She hands you a shimmering potion...");
+  window.location.href = "potion-scene.html"; // next scene
+}
+
+function refuseChoice() {
+  document.getElementById("deathScreen").style.display = "flex";
+}
+
+function tryAgain() {
+  document.getElementById("deathScreen").style.display = "none";
+}
+
+  </script>
+
+</body>
+</html>
